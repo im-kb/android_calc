@@ -8,8 +8,8 @@
 
     <TableLayout
         android:id="@+id/tableLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="240dp"
+        android:layout_width="fill_parent"
+        android:layout_height="241dp"
         android:shrinkColumns="*"
         android:stretchColumns="*"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -21,7 +21,7 @@
 
             <Button
                 android:id="@+id/buttonAC"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleOutside"
                 android:layout_height="wrap_content"
                 android:fontFamily="monospace"
                 android:text="AC"
@@ -30,7 +30,7 @@
 
             <Button
                 android:id="@+id/buttonC"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleOutside"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="c"
@@ -39,7 +39,7 @@
 
             <Button
                 android:id="@+id/buttonMod"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleOutside"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="%"
@@ -48,7 +48,7 @@
 
             <Button
                 android:id="@+id/buttonDivide"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleOutside"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="/"
@@ -57,7 +57,7 @@
 
             <Button
                 android:id="@+id/buttonLog"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleOutside"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="log10"
@@ -70,7 +70,7 @@
 
             <Button
                 android:id="@+id/buttonSeven"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleInside"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="7"
@@ -78,7 +78,7 @@
 
             <Button
                 android:id="@+id/buttonEight"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleInside"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="8"
@@ -86,7 +86,7 @@
 
             <Button
                 android:id="@+id/buttonNine"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleInside"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="9"
@@ -94,7 +94,7 @@
 
             <Button
                 android:id="@+id/buttonX"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleInside"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="x"
@@ -103,7 +103,7 @@
 
             <Button
                 android:id="@+id/buttonFact"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleOutside"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="x!"
@@ -116,7 +116,7 @@
 
             <Button
                 android:id="@+id/buttonFour"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleInside"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="4"
@@ -124,7 +124,7 @@
 
             <Button
                 android:id="@+id/buttonFive"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleInside"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="5"
@@ -132,7 +132,7 @@
 
             <Button
                 android:id="@+id/buttonSix"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleInside"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="6"
@@ -140,7 +140,7 @@
 
             <Button
                 android:id="@+id/buttonMinus"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleInside"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="-"
@@ -149,7 +149,7 @@
 
             <Button
                 android:id="@+id/buttonSqrt"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleOutside"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="SQRT(X)"
@@ -162,7 +162,7 @@
 
             <Button
                 android:id="@+id/buttonOne"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleInside"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1"
@@ -170,7 +170,7 @@
 
             <Button
                 android:id="@+id/buttonTwo"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleInside"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2"
@@ -178,7 +178,7 @@
 
             <Button
                 android:id="@+id/buttonThree"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleInside"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="3"
@@ -186,7 +186,7 @@
 
             <Button
                 android:id="@+id/buttonPlus"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleInside"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="+"
@@ -195,7 +195,7 @@
 
             <Button
                 android:id="@+id/button3"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleOutside"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="x^3"
@@ -208,7 +208,7 @@
 
             <Button
                 android:id="@+id/buttonPlusMinus"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleInside"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="+/-"
@@ -217,7 +217,7 @@
 
             <Button
                 android:id="@+id/buttonZero"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleInside"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
@@ -225,7 +225,7 @@
 
             <Button
                 android:id="@+id/buttonDot"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleInside"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="."
@@ -234,7 +234,7 @@
 
             <Button
                 android:id="@+id/buttonEquals"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleInside"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="="
@@ -243,7 +243,7 @@
 
             <Button
                 android:id="@+id/buttonSquare"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleOutside"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="x^2"
@@ -255,9 +255,18 @@
         android:id="@+id/textViewResult"
         style="@style/result1Style"
         android:layout_width="fill_parent"
-        android:layout_height="100dp"
-        android:text="WYNIK"
+        android:layout_height="60dp"
+        android:textSize="30dp"
         app:layout_constraintBottom_toTopOf="@+id/tableLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewResult2"
+        style="@style/result2Style"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
