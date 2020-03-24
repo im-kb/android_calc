@@ -10,10 +10,10 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
     int Operation = 0;
     int OperationTemp = 0;
-    double result=0;
+    double result = 0;
     double LiczbaA = 0;
     double LiczbaB = 0;
-    TextView resultText,result2Text;
+    TextView resultText, result2Text;
 
     void calculate(int x) {
         switch (x) {
@@ -58,12 +58,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         final Button buttonZero = findViewById(R.id.buttonZero);
         final Button buttonOne = findViewById(R.id.buttonOne);
@@ -78,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         final Button buttonFact = findViewById(R.id.buttonFact);
         final Button buttonDot = findViewById(R.id.buttonDot);
         final Button buttonEquals = findViewById(R.id.buttonEquals);
-        final Button buttonPercent = findViewById(R.id.buttonPercent);
+        final Button buttonMod = findViewById(R.id.buttonMod);
         final Button buttonSquare = findViewById(R.id.buttonSquare);
         final Button buttonSqrt = findViewById(R.id.buttonSqrt);
         final Button buttonPlus = findViewById(R.id.buttonPlus);
@@ -86,10 +84,9 @@ public class MainActivity extends AppCompatActivity {
         final Button buttonX = findViewById(R.id.buttonX);
         final Button buttonAC = findViewById(R.id.buttonAC);
         final Button buttonC = findViewById(R.id.buttonC);
+        final Button buttonDivide = findViewById(R.id.buttonDivide);
         resultText = findViewById(R.id.textViewResult);
         result2Text = findViewById(R.id.textViewResult2);
-
-
 
 
         buttonZero.setOnClickListener(new View.OnClickListener() {
@@ -190,14 +187,15 @@ public class MainActivity extends AppCompatActivity {
                 buttonDot.setEnabled(true);
                 Operation = 2;
                 int length = resultText.getText().length(); //dlugosc aktualnie wpisanego tekstu w oknie wyniku
-                if (length > 0 &&resultText.getText()!="-") {
+                if (length > 0 && resultText.getText() != "-") {
                     result2Text.setText(resultText.getText() + "-");
                     LiczbaA = Double.parseDouble((String) resultText.getText());
                     resultText.setText("");
                     buttonMinus.setEnabled(true);
                 } else {
                     resultText.setText("-");
-                }}
+                }
+            }
         });
 
         buttonX.setOnClickListener(new View.OnClickListener() {
@@ -211,9 +209,42 @@ public class MainActivity extends AppCompatActivity {
                     LiczbaA = Double.parseDouble((String) resultText.getText());
                     resultText.setText("");
                 } else {
-                //pusty string
-                    }
+                    //pusty string
                 }
+            }
+        });
+
+        buttonDivide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buttonDot.setEnabled(true);
+                OperationTemp = 4;
+                int length = resultText.getText().length(); //dlugosc aktualnie wpisanego tekstu w oknie wyniku
+                if (length > 0) {
+                    result2Text.setText(resultText.getText() + "/");
+                    LiczbaA = Double.parseDouble((String) resultText.getText());
+                    resultText.setText("");
+                } else {
+                    //pusty string
+                }
+            }
+        });
+
+        buttonMod.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buttonDot.setEnabled(true);
+                Operation = 5;
+                int length = resultText.getText().length(); //dlugosc aktualnie wpisanego tekstu w oknie wyniku
+                if (length > 0) {
+                    result2Text.setText(resultText.getText() + "%");
+                    LiczbaA = Double.parseDouble((String) resultText.getText());
+                    resultText.setText("");
+                    buttonMinus.setEnabled(true);
+                } else {
+                    //pusty string
+                }
+            }
         });
 
         buttonC.setOnClickListener(new View.OnClickListener() {
@@ -228,6 +259,9 @@ public class MainActivity extends AppCompatActivity {
                     temp = del.toString();//zmiana stringbuilder na string
                     resultText.setText(temp);
                 } else {
+                    OperationTemp=0;
+                    Operation=0;
+                    buttonDot.setEnabled(true);
                 }
             }
         });
@@ -237,15 +271,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 resultText.setText("");
                 result2Text.setText("");
-                Operation=0;
-                OperationTemp=0;
-                LiczbaA=0;
-                result=0;
-                LiczbaB=0;
+                Operation = 0;
+                OperationTemp = 0;
+                LiczbaA = 0;
+                result = 0;
+                LiczbaB = 0;
                 buttonDot.setEnabled(true);
             }
         });
-
 
         buttonDot.setOnClickListener(new View.OnClickListener() {
             @Override

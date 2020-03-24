@@ -38,7 +38,7 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/buttonPercent"
+                android:id="@+id/buttonMod"
                 style="@style/buttonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

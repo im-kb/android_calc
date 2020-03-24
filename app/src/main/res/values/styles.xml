@@ -21,13 +21,34 @@
 
 
     <style name="result1Style">
-        <item name="android:background">#607D8B</item>
+        <item name="android:background">#BDBDBD</item>
         <item name="android:gravity">center|right</item>
     </style>
 
     <style name="result2Style">
         <item name="android:background">#FFFFFF</item>
         <item name="android:gravity">bottom|right</item>
+    </style>
+
+    <style name="buttonStyleInside">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">200px</item>
+        <item name="android:background">#757575</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:layout_margin">0dp</item>
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:textSize">18dp</item>
+        <!--        <item name="android:textStyle">bold</item>-->
+    </style>
+    <style name="buttonStyleOutside">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">200px</item>
+        <item name="android:background">#FF7043</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:layout_margin">0dp</item>
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:textSize">26dp</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
 </resources>

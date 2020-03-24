@@ -21,7 +21,7 @@
 
             <Button
                 android:id="@+id/buttonAC"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleOutside"
                 android:layout_height="200px"
                 android:fontFamily="monospace"
                 android:text="AC"
@@ -30,7 +30,7 @@
 
             <Button
                 android:id="@+id/buttonC"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleOutside"
                 android:layout_width="wrap_content"
                 android:layout_height="200px"
                 android:text="bckspc"
@@ -38,8 +38,8 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/buttonPercent"
-                style="@style/buttonStyle"
+                android:id="@+id/buttonMod"
+                style="@style/buttonStyleOutside"
                 android:layout_width="wrap_content"
                 android:layout_height="200px"
                 android:text="%"
@@ -48,7 +48,7 @@
 
             <Button
                 android:id="@+id/buttonDivide"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleOutside"
                 android:layout_width="wrap_content"
                 android:layout_height="200px"
                 android:text="/"
@@ -62,28 +62,28 @@
 
             <Button
                 android:id="@+id/buttonSeven"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleInside"
                 android:layout_width="wrap_content"
                 android:layout_height="200px"
                 android:text="7" />
 
             <Button
                 android:id="@+id/buttonEight"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleInside"
                 android:layout_width="wrap_content"
                 android:layout_height="200px"
                 android:text="8" />
 
             <Button
                 android:id="@+id/buttonNine"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleInside"
                 android:layout_width="wrap_content"
                 android:layout_height="200px"
                 android:text="9" />
 
             <Button
                 android:id="@+id/buttonX"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleOutside"
                 android:layout_width="wrap_content"
                 android:layout_height="200px"
                 android:text="x"
@@ -97,28 +97,28 @@
 
             <Button
                 android:id="@+id/buttonFour"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleInside"
                 android:layout_width="wrap_content"
                 android:layout_height="200px"
                 android:text="4" />
 
             <Button
                 android:id="@+id/buttonFive"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleInside"
                 android:layout_width="wrap_content"
                 android:layout_height="200px"
                 android:text="5" />
 
             <Button
                 android:id="@+id/buttonSix"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleInside"
                 android:layout_width="wrap_content"
                 android:layout_height="200px"
                 android:text="6" />
 
             <Button
                 android:id="@+id/buttonMinus"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleOutside"
                 android:layout_width="wrap_content"
                 android:layout_height="200px"
                 android:text="-"
@@ -132,28 +132,28 @@
 
             <Button
                 android:id="@+id/buttonOne"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleInside"
                 android:layout_width="wrap_content"
                 android:layout_height="200px"
                 android:text="1" />
 
             <Button
                 android:id="@+id/buttonTwo"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleInside"
                 android:layout_width="wrap_content"
                 android:layout_height="200px"
                 android:text="2" />
 
             <Button
                 android:id="@+id/buttonThree"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleInside"
                 android:layout_width="wrap_content"
                 android:layout_height="200px"
                 android:text="3" />
 
             <Button
                 android:id="@+id/buttonPlus"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleOutside"
                 android:layout_width="wrap_content"
                 android:layout_height="200px"
                 android:text="+"
@@ -167,23 +167,22 @@
 
             <Button
                 android:id="@+id/buttonPlusMinus"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleInside"
                 android:layout_width="wrap_content"
                 android:layout_height="200px"
-                android:text="+/-"
                 android:textSize="18dp"
                 android:textStyle="bold" />
 
             <Button
                 android:id="@+id/buttonZero"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleInside"
                 android:layout_width="wrap_content"
                 android:layout_height="200px"
                 android:text="0" />
 
             <Button
                 android:id="@+id/buttonDot"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleInside"
                 android:layout_width="wrap_content"
                 android:layout_height="200px"
                 android:text="."
@@ -192,7 +191,7 @@
 
             <Button
                 android:id="@+id/buttonEquals"
-                style="@style/buttonStyle"
+                style="@style/buttonStyleOutside"
                 android:layout_width="wrap_content"
                 android:layout_height="200px"
                 android:text="="
@@ -206,14 +205,16 @@
         style="@style/result1Style"
         android:layout_width="416dp"
         android:layout_height="107dp"
+        android:layout_gravity="left"
         android:layout_marginTop="2dp"
         android:textSize="36sp"
         android:textStyle="bold"
-        android:layout_gravity="left"
+        app:layout_constraintBottom_toTopOf="@+id/tableLayout3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewResult2" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewResult2"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textViewResult2"
