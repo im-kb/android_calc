@@ -15,11 +15,7 @@ public class MainActivity extends AppCompatActivity {
     double TopNumber = 0;
     double BottomNumber = 0;
     TextView resultTextBottom, resultTextTop;
-    Button buttonZero, buttonOne, buttonTwo, buttonThree, buttonFour, buttonFive,
-            buttonSix, buttonSeven, buttonEight, buttonNine, buttonDot, buttonEquals,
-            buttonMod, buttonPlus, buttonMinus, buttonX, buttonAC, buttonC, buttonDivide,
-            buttonLog, buttonFact, buttonSqrt, buttonSquare, buttonCube;
-
+    Button buttonZero, buttonOne, buttonTwo, buttonThree, buttonFour, buttonFive, buttonSix, buttonSeven, buttonEight, buttonNine, buttonDot, buttonEquals, buttonMod, buttonPlus, buttonMinus, buttonX, buttonAC, buttonC, buttonDivide, buttonLog, buttonFact, buttonSqrt, buttonSquare, buttonCube;
 
     public void getAndSetNumberInput(View v) {
         Button b = (Button) v;
@@ -84,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override
+    @Override // ladowanie przyciskow
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -122,7 +118,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void portraitButtons() {
-
         buttonZero.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -339,7 +334,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     private void landscapeButtons() {
@@ -414,7 +408,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 }
 
