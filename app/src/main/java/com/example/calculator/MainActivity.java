@@ -23,8 +23,13 @@ public class MainActivity extends AppCompatActivity {
         resultTextBottom.setText(resultTextBottom.getText() + buttonText);
     }
 
+    public int getBottomResultLenght() {
+        int length = resultTextBottom.getText().length(); //dlugosc aktualnie wpisanego tekstu w oknie wyniku
+        return length;
+    }
+
     void calculate(int x) {
-        switch (x) {
+        switch (x) {//dzialania po kliknieciu =
             case 1://add
                 result = TopNumber + BottomNumber;
                 resultTextBottom.setText(Double.toString(result));
@@ -78,6 +83,11 @@ public class MainActivity extends AppCompatActivity {
                 resultTextBottom.setText(Double.toString(result));
                 break;
         }
+    }
+
+    void bottomToTop() {
+        TopNumber = Double.parseDouble((String) resultTextBottom.getText());
+        resultTextBottom.setText("");
     }
 
     @Override // ladowanie przyciskow
@@ -192,11 +202,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Operation = 1;
-                int length = resultTextBottom.getText().length(); //dlugosc aktualnie wpisanego tekstu w oknie wyniku
-                if (length > 0) {
+                if (getBottomResultLenght() > 0) {
                     resultTextTop.setText(resultTextBottom.getText() + "+");
-                    TopNumber = Double.parseDouble((String) resultTextBottom.getText());
-                    resultTextBottom.setText("");
+                    bottomToTop();
                 }
             }
         });
@@ -205,11 +213,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Operation = 2;
-                int length = resultTextBottom.getText().length(); //dlugosc aktualnie wpisanego tekstu w oknie wyniku
-                if (length > 0 && resultTextBottom.getText() != "-") {
+                if (getBottomResultLenght() > 0 && resultTextBottom.getText() != "-") {
                     resultTextTop.setText(resultTextBottom.getText() + "-");
-                    TopNumber = Double.parseDouble((String) resultTextBottom.getText());
-                    resultTextBottom.setText("");
+                    bottomToTop();
                 } else {
                     resultTextBottom.setText("-");
                 }
@@ -220,13 +226,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 OperationTemp = 3;
-                int length = resultTextBottom.getText().length(); //dlugosc aktualnie wpisanego tekstu w oknie wyniku
-                if (length > 0) {
+                if (getBottomResultLenght() > 0) {
                     resultTextTop.setText(resultTextBottom.getText() + "x");
-                    TopNumber = Double.parseDouble((String) resultTextBottom.getText());
-                    resultTextBottom.setText("");
-                } else {
-                    //pusty string
+                    bottomToTop();
                 }
             }
         });
@@ -235,13 +237,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 OperationTemp = 4;
-                int length = resultTextBottom.getText().length(); //dlugosc aktualnie wpisanego tekstu w oknie wyniku
-                if (length > 0) {
+                if (getBottomResultLenght() > 0) {
                     resultTextTop.setText(resultTextBottom.getText() + "/");
-                    TopNumber = Double.parseDouble((String) resultTextBottom.getText());
-                    resultTextBottom.setText("");
-                } else {
-                    //pusty string
+                    bottomToTop();
                 }
             }
         });
@@ -250,13 +248,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Operation = 5;
-                int length = resultTextBottom.getText().length(); //dlugosc aktualnie wpisanego tekstu w oknie wyniku
-                if (length > 0) {
+                if (getBottomResultLenght() > 0) {
                     resultTextTop.setText(resultTextBottom.getText() + "%");
-                    TopNumber = Double.parseDouble((String) resultTextBottom.getText());
-                    resultTextBottom.setText("");
-                } else {
-                    //pusty string
+                    bottomToTop();
                 }
             }
         });
@@ -264,14 +258,11 @@ public class MainActivity extends AppCompatActivity {
         buttonC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int length = resultTextBottom.getText().length(); //dlugosc aktualnie wpisanego tekstu w oknie wyniku
-                int number = length - 1; //z ktorego miejsca stringa usunac (numeracja od 0)
-                String temp;
-                if (length > 0) {
+                int number = getBottomResultLenght() - 1; //z ktorego miejsca stringa usunac (numeracja od 0)
+                if (getBottomResultLenght() > 0) {
                     StringBuilder del = new StringBuilder(resultTextBottom.getText());
                     del.deleteCharAt(number);//usun znak na ostatnim miejscu
-                    temp = del.toString();//zmiana stringbuilder na string
-                    resultTextBottom.setText(temp);
+                    resultTextBottom.setText(del.toString());
                 } else {
                     OperationTemp = 0;
                     Operation = 0;
@@ -295,9 +286,8 @@ public class MainActivity extends AppCompatActivity {
         buttonDot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int length = resultTextBottom.getText().length(); //dlugosc aktualnie wpisanego tekstu w oknie wyniku
                 boolean isDot = false;
-                if (length > 0) {
+                if (getBottomResultLenght() > 0) {
                     String inputToCheck = (String) resultTextBottom.getText();
                     for (int i = 0; i < inputToCheck.length(); i++) {
                         if (inputToCheck.contains(".")) {
@@ -315,15 +305,11 @@ public class MainActivity extends AppCompatActivity {
         buttonEquals.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int length = resultTextBottom.getText().length(); //dlugosc aktualnie wpisanego tekstu w oknie wyniku
-
                 if (OperationTemp == 0) {//jesli działanie na dodatnich
-                    if (length > 0) {
+                    if (getBottomResultLenght() > 0) {
                         resultTextTop.setText("");
                         BottomNumber = Double.parseDouble((String) resultTextBottom.getText());
                         calculate(Operation);
-                    } else {
-                        ///ousty string
                     }
                 } else {//jesli działanie na ujemnych
                     Operation = OperationTemp;
@@ -341,13 +327,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 OperationTemp = 9;
-                int length = resultTextBottom.getText().length(); //dlugosc aktualnie wpisanego tekstu w oknie wyniku
-                if (length > 0) {
+                if (getBottomResultLenght() > 0) {
                     resultTextTop.setText("log10(" + resultTextBottom.getText() + ")");
                     TopNumber = Double.parseDouble((String) resultTextBottom.getText());
                     calculate(OperationTemp);
-                } else {
-                    //pusty string
                 }
             }
         });
@@ -362,13 +345,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 OperationTemp = 8;
-                int length = resultTextBottom.getText().length(); //dlugosc aktualnie wpisanego tekstu w oknie wyniku
-                if (length > 0) {
+                if (getBottomResultLenght() > 0) {
                     resultTextTop.setText("sqrt(" + resultTextBottom.getText() + ")");
                     TopNumber = Double.parseDouble((String) resultTextBottom.getText());
                     calculate(OperationTemp);
-                } else {
-                    //pusty string
                 }
             }
         });
@@ -383,13 +363,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 OperationTemp = 6;
-                int length = resultTextBottom.getText().length(); //dlugosc aktualnie wpisanego tekstu w oknie wyniku
-                if (length > 0) {
+                if (getBottomResultLenght() > 0) {
                     resultTextTop.setText(resultTextBottom.getText() + "^2");
                     TopNumber = Double.parseDouble((String) resultTextBottom.getText());
                     calculate(OperationTemp);
-                } else {
-                    //pusty string
                 }
             }
         });
@@ -398,16 +375,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 OperationTemp = 7;
-                int length = resultTextBottom.getText().length(); //dlugosc aktualnie wpisanego tekstu w oknie wyniku
-                if (length > 0) {
+                if (getBottomResultLenght() > 0) {
                     resultTextTop.setText(resultTextBottom.getText() + "^3");
                     TopNumber = Double.parseDouble((String) resultTextBottom.getText());
                     calculate(OperationTemp);
-                } else {
-                    //pusty string
                 }
             }
         });
     }
 }
-
