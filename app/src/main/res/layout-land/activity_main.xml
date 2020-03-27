@@ -13,7 +13,8 @@
         android:shrinkColumns="*"
         android:stretchColumns="*"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="-1dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <TableRow
             android:layout_width="match_parent"
@@ -194,7 +195,7 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/buttonCube"
                 style="@style/buttonStyleOutside"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -207,11 +208,9 @@
             android:layout_height="match_parent">
 
             <Button
-                android:id="@+id/buttonPlusMinus"
                 style="@style/buttonStyleInside"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="+/-"
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
@@ -267,6 +266,7 @@
         android:layout_width="fill_parent"
         android:layout_height="60dp"
         android:textSize="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewResult"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

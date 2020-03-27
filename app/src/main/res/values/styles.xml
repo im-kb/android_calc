@@ -26,7 +26,7 @@
     </style>
 
     <style name="result2Style">
-        <item name="android:background">#FFFFFF</item>
+        <item name="android:background">#00000000</item>
         <item name="android:gravity">bottom|right</item>
     </style>
 

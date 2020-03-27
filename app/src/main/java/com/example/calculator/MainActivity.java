@@ -2,6 +2,7 @@ package com.example.calculator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,49 +12,74 @@ public class MainActivity extends AppCompatActivity {
     int Operation = 0;
     int OperationTemp = 0;
     double result = 0;
-    double LiczbaA = 0;
-    double LiczbaB = 0;
-    TextView resultText, result2Text;
+    double TopNumber = 0;
+    double BottomNumber = 0;
+    TextView resultTextBottom, resultTextTop;
+    Button buttonZero, buttonOne, buttonTwo, buttonThree, buttonFour, buttonFive,
+            buttonSix, buttonSeven, buttonEight, buttonNine, buttonDot, buttonEquals,
+            buttonMod, buttonPlus, buttonMinus, buttonX, buttonAC, buttonC, buttonDivide,
+            buttonLog, buttonFact, buttonSqrt, buttonSquare, buttonCube;
+
+
+    public void getAndSetNumberInput(View v) {
+        Button b = (Button) v;
+        String buttonText = b.getText().toString();
+        resultTextBottom.setText(resultTextBottom.getText() + buttonText);
+    }
 
     void calculate(int x) {
         switch (x) {
             case 1://add
-                result = LiczbaA + LiczbaB;
-                LiczbaA = result;
-                resultText.setText(Double.toString(result));
+                result = TopNumber + BottomNumber;
+                resultTextBottom.setText(Double.toString(result));
                 break;
 
             case 2://substract
                 if (OperationTemp == 0) {
-                    result = LiczbaA - LiczbaB;
-                    LiczbaA = result;
-                    resultText.setText(Double.toString(result));
+                    result = TopNumber - BottomNumber;
+                    resultTextBottom.setText(Double.toString(result));
                     break;
                 } else {
                     Operation = OperationTemp;
                     break;
                 }
             case 3://multiply
-                result = LiczbaA * LiczbaB;
-                LiczbaA = result;
-                resultText.setText(Double.toString(result));
+                result = TopNumber * BottomNumber;
+                resultTextBottom.setText(Double.toString(result));
                 break;
 
             case 4://divide
-                result = LiczbaA / LiczbaB;
-                if (LiczbaB == 0) {
-                    resultText.setText("Err!");
-                    //dzielenie przez zero!!!
+                result = TopNumber / BottomNumber;
+                if (BottomNumber == 0) {
+                    resultTextBottom.setText("Err!");  //dzielenie przez zero!!!
                 } else {
-                    LiczbaA = result;
-                    resultText.setText(Double.toString(result));
+                    resultTextBottom.setText(Double.toString(result));
                 }
                 break;
 
             case 5://mod
-                result = LiczbaA % LiczbaB;
-                LiczbaA = result;
-                resultText.setText(Double.toString(result));
+                result = TopNumber % BottomNumber;
+                resultTextBottom.setText(Double.toString(result));
+                break;
+
+            case 6://square
+                result = Math.pow(TopNumber, 2);
+                resultTextBottom.setText(Double.toString(result));
+                break;
+
+            case 7://cube
+                result = Math.pow(TopNumber, 3);
+                resultTextBottom.setText(Double.toString(result));
+                break;
+
+            case 8://sqrt
+                result = Math.sqrt(TopNumber);
+                resultTextBottom.setText(Double.toString(result));
+                break;
+
+            case 9://log
+                result = Math.log10(TopNumber);
+                resultTextBottom.setText(Double.toString(result));
                 break;
         }
     }
@@ -63,120 +89,119 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final Button buttonZero = findViewById(R.id.buttonZero);
-        final Button buttonOne = findViewById(R.id.buttonOne);
-        final Button buttonTwo = findViewById(R.id.buttonTwo);
-        final Button buttonThree = findViewById(R.id.buttonThree);
-        final Button buttonFour = findViewById(R.id.buttonFour);
-        final Button buttonFive = findViewById(R.id.buttonFive);
-        final Button buttonSix = findViewById(R.id.buttonSix);
-        final Button buttonSeven = findViewById(R.id.buttonSeven);
-        final Button buttonEight = findViewById(R.id.buttonEight);
-        final Button buttonNine = findViewById(R.id.buttonNine);
-        final Button buttonFact = findViewById(R.id.buttonFact);
-        final Button buttonDot = findViewById(R.id.buttonDot);
-        final Button buttonEquals = findViewById(R.id.buttonEquals);
-        final Button buttonMod = findViewById(R.id.buttonMod);
-        final Button buttonSquare = findViewById(R.id.buttonSquare);
-        final Button buttonSqrt = findViewById(R.id.buttonSqrt);
-        final Button buttonPlus = findViewById(R.id.buttonPlus);
-        final Button buttonMinus = findViewById(R.id.buttonMinus);
-        final Button buttonX = findViewById(R.id.buttonX);
-        final Button buttonAC = findViewById(R.id.buttonAC);
-        final Button buttonC = findViewById(R.id.buttonC);
-        final Button buttonDivide = findViewById(R.id.buttonDivide);
-        resultText = findViewById(R.id.textViewResult);
-        result2Text = findViewById(R.id.textViewResult2);
+        buttonZero = findViewById(R.id.buttonZero);
+        buttonOne = findViewById(R.id.buttonOne);
+        buttonTwo = findViewById(R.id.buttonTwo);
+        buttonThree = findViewById(R.id.buttonThree);
+        buttonFour = findViewById(R.id.buttonFour);
+        buttonFive = findViewById(R.id.buttonFive);
+        buttonSix = findViewById(R.id.buttonSix);
+        buttonSeven = findViewById(R.id.buttonSeven);
+        buttonEight = findViewById(R.id.buttonEight);
+        buttonNine = findViewById(R.id.buttonNine);
+        buttonDot = findViewById(R.id.buttonDot);
+        buttonEquals = findViewById(R.id.buttonEquals);
+        buttonMod = findViewById(R.id.buttonMod);
+        buttonPlus = findViewById(R.id.buttonPlus);
+        buttonMinus = findViewById(R.id.buttonMinus);
+        buttonX = findViewById(R.id.buttonX);
+        buttonAC = findViewById(R.id.buttonAC);
+        buttonC = findViewById(R.id.buttonC);
+        buttonDivide = findViewById(R.id.buttonDivide);
+        resultTextBottom = findViewById(R.id.textViewResult);
+        resultTextTop = findViewById(R.id.textViewResult2);
+        buttonLog = findViewById(R.id.buttonLog);
+        buttonFact = findViewById(R.id.buttonFact);
+        buttonSqrt = findViewById(R.id.buttonSqrt);
+        buttonCube = findViewById(R.id.buttonCube);
+        buttonSquare = findViewById(R.id.buttonSquare);
+        portraitButtons();
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            landscapeButtons();// jesli landscape to doladuj przyciski landscape
+        }
+    }
 
+    private void portraitButtons() {
 
         buttonZero.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                resultText.setText(resultText.getText() + (String) buttonZero.getText());
+                getAndSetNumberInput(v);
             }
         });
 
         buttonOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                resultText.setText(resultText.getText() + (String) buttonOne.getText());
+                getAndSetNumberInput(v);
             }
         });
 
         buttonTwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                resultText.setText(resultText.getText() + (String) buttonTwo.getText());
+                getAndSetNumberInput(v);
             }
         });
-
 
         buttonThree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                resultText.setText(resultText.getText() + (String) buttonThree.getText());
+                getAndSetNumberInput(v);
             }
         });
-
 
         buttonFour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                resultText.setText(resultText.getText() + (String) buttonFour.getText());
+                getAndSetNumberInput(v);
             }
         });
-
 
         buttonFive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                resultText.setText(resultText.getText() + (String) buttonFive.getText());
+                getAndSetNumberInput(v);
             }
         });
 
         buttonSix.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                resultText.setText(resultText.getText() + (String) buttonSix.getText());
+                getAndSetNumberInput(v);
             }
         });
-
 
         buttonSeven.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                resultText.setText(resultText.getText() + (String) buttonSeven.getText());
+                getAndSetNumberInput(v);
             }
         });
-
 
         buttonEight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                resultText.setText(resultText.getText() + (String) buttonEight.getText());
+                getAndSetNumberInput(v);
             }
         });
-
 
         buttonNine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                resultText.setText(resultText.getText() + (String) buttonNine.getText());
+                getAndSetNumberInput(v);
             }
         });
 
         buttonPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                buttonPlus.setEnabled(false);
-                result2Text.setText(resultText.getText() + (String) buttonPlus.getText());
-                buttonDot.setEnabled(true);
                 Operation = 1;
-                int length = resultText.getText().length(); //dlugosc aktualnie wpisanego tekstu w oknie wyniku
+                int length = resultTextBottom.getText().length(); //dlugosc aktualnie wpisanego tekstu w oknie wyniku
                 if (length > 0) {
-                    result2Text.setText(resultText.getText() + "+");
-                    LiczbaA = Double.parseDouble((String) resultText.getText());
-                    resultText.setText("");
+                    resultTextTop.setText(resultTextBottom.getText() + "+");
+                    TopNumber = Double.parseDouble((String) resultTextBottom.getText());
+                    resultTextBottom.setText("");
                 }
             }
         });
@@ -184,16 +209,14 @@ public class MainActivity extends AppCompatActivity {
         buttonMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                buttonDot.setEnabled(true);
                 Operation = 2;
-                int length = resultText.getText().length(); //dlugosc aktualnie wpisanego tekstu w oknie wyniku
-                if (length > 0 && resultText.getText() != "-") {
-                    result2Text.setText(resultText.getText() + "-");
-                    LiczbaA = Double.parseDouble((String) resultText.getText());
-                    resultText.setText("");
-                    buttonMinus.setEnabled(true);
+                int length = resultTextBottom.getText().length(); //dlugosc aktualnie wpisanego tekstu w oknie wyniku
+                if (length > 0 && resultTextBottom.getText() != "-") {
+                    resultTextTop.setText(resultTextBottom.getText() + "-");
+                    TopNumber = Double.parseDouble((String) resultTextBottom.getText());
+                    resultTextBottom.setText("");
                 } else {
-                    resultText.setText("-");
+                    resultTextBottom.setText("-");
                 }
             }
         });
@@ -201,13 +224,12 @@ public class MainActivity extends AppCompatActivity {
         buttonX.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                buttonDot.setEnabled(true);
                 OperationTemp = 3;
-                int length = resultText.getText().length(); //dlugosc aktualnie wpisanego tekstu w oknie wyniku
+                int length = resultTextBottom.getText().length(); //dlugosc aktualnie wpisanego tekstu w oknie wyniku
                 if (length > 0) {
-                    result2Text.setText(resultText.getText() + "x");
-                    LiczbaA = Double.parseDouble((String) resultText.getText());
-                    resultText.setText("");
+                    resultTextTop.setText(resultTextBottom.getText() + "x");
+                    TopNumber = Double.parseDouble((String) resultTextBottom.getText());
+                    resultTextBottom.setText("");
                 } else {
                     //pusty string
                 }
@@ -217,13 +239,12 @@ public class MainActivity extends AppCompatActivity {
         buttonDivide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                buttonDot.setEnabled(true);
                 OperationTemp = 4;
-                int length = resultText.getText().length(); //dlugosc aktualnie wpisanego tekstu w oknie wyniku
+                int length = resultTextBottom.getText().length(); //dlugosc aktualnie wpisanego tekstu w oknie wyniku
                 if (length > 0) {
-                    result2Text.setText(resultText.getText() + "/");
-                    LiczbaA = Double.parseDouble((String) resultText.getText());
-                    resultText.setText("");
+                    resultTextTop.setText(resultTextBottom.getText() + "/");
+                    TopNumber = Double.parseDouble((String) resultTextBottom.getText());
+                    resultTextBottom.setText("");
                 } else {
                     //pusty string
                 }
@@ -233,14 +254,12 @@ public class MainActivity extends AppCompatActivity {
         buttonMod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                buttonDot.setEnabled(true);
                 Operation = 5;
-                int length = resultText.getText().length(); //dlugosc aktualnie wpisanego tekstu w oknie wyniku
+                int length = resultTextBottom.getText().length(); //dlugosc aktualnie wpisanego tekstu w oknie wyniku
                 if (length > 0) {
-                    result2Text.setText(resultText.getText() + "%");
-                    LiczbaA = Double.parseDouble((String) resultText.getText());
-                    resultText.setText("");
-                    buttonMinus.setEnabled(true);
+                    resultTextTop.setText(resultTextBottom.getText() + "%");
+                    TopNumber = Double.parseDouble((String) resultTextBottom.getText());
+                    resultTextBottom.setText("");
                 } else {
                     //pusty string
                 }
@@ -250,18 +269,17 @@ public class MainActivity extends AppCompatActivity {
         buttonC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int length = resultText.getText().length(); //dlugosc aktualnie wpisanego tekstu w oknie wyniku
+                int length = resultTextBottom.getText().length(); //dlugosc aktualnie wpisanego tekstu w oknie wyniku
                 int number = length - 1; //z ktorego miejsca stringa usunac (numeracja od 0)
                 String temp;
                 if (length > 0) {
-                    StringBuilder del = new StringBuilder(resultText.getText());
+                    StringBuilder del = new StringBuilder(resultTextBottom.getText());
                     del.deleteCharAt(number);//usun znak na ostatnim miejscu
                     temp = del.toString();//zmiana stringbuilder na string
-                    resultText.setText(temp);
+                    resultTextBottom.setText(temp);
                 } else {
-                    OperationTemp=0;
-                    Operation=0;
-                    buttonDot.setEnabled(true);
+                    OperationTemp = 0;
+                    Operation = 0;
                 }
             }
         });
@@ -269,36 +287,32 @@ public class MainActivity extends AppCompatActivity {
         buttonAC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                resultText.setText("");
-                result2Text.setText("");
+                resultTextBottom.setText("");
+                resultTextTop.setText("");
                 Operation = 0;
                 OperationTemp = 0;
-                LiczbaA = 0;
+                TopNumber = 0;
                 result = 0;
-                LiczbaB = 0;
-                buttonDot.setEnabled(true);
+                BottomNumber = 0;
             }
         });
 
         buttonDot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                resultText.setText(resultText.getText() + (String) buttonDot.getText());
-                buttonDot.setEnabled(false);
-                int length = resultText.getText().length(); //dlugosc aktualnie wpisanego tekstu w oknie wyniku
+                int length = resultTextBottom.getText().length(); //dlugosc aktualnie wpisanego tekstu w oknie wyniku
+                boolean isDot = false;
                 if (length > 0) {
-                    String temp1;
-                    String del = (String) resultText.getText();
-                    for (int i = 0; i < del.length(); i++) {
-                        if (del.charAt(i) == '.') {
-                            //juz jest kropka
-                            return;
+                    String inputToCheck = (String) resultTextBottom.getText();
+                    for (int i = 0; i < inputToCheck.length(); i++) {
+                        if (inputToCheck.contains(".")) {
+                            isDot = true;
+                            break;
                         }
                     }
-                    temp1 = del;//zmiana stringbuilder na string
-                    resultText.setText(temp1 + ".");
-                } else {
-                    buttonDot.setEnabled(true);
+                    if (isDot == false) {
+                        resultTextBottom.setText(resultTextBottom.getText() + ".");// TODO append nie działa :(
+                    }
                 }
             }
         });
@@ -306,24 +320,101 @@ public class MainActivity extends AppCompatActivity {
         buttonEquals.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                buttonPlus.setEnabled(true);
-                int length = resultText.getText().length(); //dlugosc aktualnie wpisanego tekstu w oknie wyniku
-                if (OperationTemp == 0) {//jesli odejmowanie lub dodawanie dodatniej
+                int length = resultTextBottom.getText().length(); //dlugosc aktualnie wpisanego tekstu w oknie wyniku
+
+                if (OperationTemp == 0) {//jesli działanie na dodatnich
                     if (length > 0) {
-                        result2Text.setText("");
-                        LiczbaB = Double.parseDouble((String) resultText.getText());
+                        resultTextTop.setText("");
+                        BottomNumber = Double.parseDouble((String) resultTextBottom.getText());
                         calculate(Operation);
                     } else {
                         ///ousty string
                     }
-                } else {//jesli dzielenie lub mnozenie ujemnej
+                } else {//jesli działanie na ujemnych
                     Operation = OperationTemp;
-                    result2Text.setText("");
-                    LiczbaB = Double.parseDouble((String) resultText.getText());
+                    resultTextTop.setText("");
+                    BottomNumber = Double.parseDouble((String) resultTextBottom.getText());
                     calculate(Operation);
                     OperationTemp = 0;
                 }
             }
         });
+
+    }
+
+    private void landscapeButtons() {
+        buttonLog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OperationTemp = 9;
+                int length = resultTextBottom.getText().length(); //dlugosc aktualnie wpisanego tekstu w oknie wyniku
+                if (length > 0) {
+                    resultTextTop.setText("log10(" + resultTextBottom.getText() + ")");
+                    TopNumber = Double.parseDouble((String) resultTextBottom.getText());
+                    calculate(OperationTemp);
+                } else {
+                    //pusty string
+                }
+            }
+        });
+
+        buttonFact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
+
+        buttonSqrt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OperationTemp = 8;
+                int length = resultTextBottom.getText().length(); //dlugosc aktualnie wpisanego tekstu w oknie wyniku
+                if (length > 0) {
+                    resultTextTop.setText("sqrt(" + resultTextBottom.getText() + ")");
+                    TopNumber = Double.parseDouble((String) resultTextBottom.getText());
+                    calculate(OperationTemp);
+                } else {
+                    //pusty string
+                }
+            }
+        });
+
+        buttonCube.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
+
+        buttonSquare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OperationTemp = 6;
+                int length = resultTextBottom.getText().length(); //dlugosc aktualnie wpisanego tekstu w oknie wyniku
+                if (length > 0) {
+                    resultTextTop.setText(resultTextBottom.getText() + "^2");
+                    TopNumber = Double.parseDouble((String) resultTextBottom.getText());
+                    calculate(OperationTemp);
+                } else {
+                    //pusty string
+                }
+            }
+        });
+
+        buttonCube.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OperationTemp = 7;
+                int length = resultTextBottom.getText().length(); //dlugosc aktualnie wpisanego tekstu w oknie wyniku
+                if (length > 0) {
+                    resultTextTop.setText(resultTextBottom.getText() + "^3");
+                    TopNumber = Double.parseDouble((String) resultTextBottom.getText());
+                    calculate(OperationTemp);
+                } else {
+                    //pusty string
+                }
+            }
+        });
+
     }
 }
+
