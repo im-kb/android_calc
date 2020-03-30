@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
             case 4://divide
                 result = TopNumber / BottomNumber;
                 if (BottomNumber == 0) {
-                    resultTextBottom.setText("Err!");  //dzielenie przez zero!!!
+                    resultTextBottom.setText("0");  //dzielenie przez zero!!!
                 } else {
                     resultTextBottom.setText(Double.toString(result));
                 }
@@ -288,11 +288,11 @@ public class MainActivity extends AppCompatActivity {
         buttonC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int number = getBottomResultLength() - 1; //z ktorego miejsca stringa usunac (numeracja od 0)
+                int indexNumberToDelete = getBottomResultLength() - 1; //z ktorego miejsca stringa usunac (numeracja od 0)
                 if (getBottomResultLength() > 0) {
-                    StringBuilder del = new StringBuilder(resultTextBottom.getText());
-                    del.deleteCharAt(number);//usun znak na ostatnim miejscu
-                    resultTextBottom.setText(del.toString());
+                    StringBuilder deleter = new StringBuilder(resultTextBottom.getText());
+                    deleter.deleteCharAt(indexNumberToDelete);//usun znak na ostatnim miejscu
+                    resultTextBottom.setText(deleter.toString());
                 } else {
                     OperationTemp = 0;
                 }
