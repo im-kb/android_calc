@@ -251,22 +251,22 @@
     </TableLayout>
 
     <TextView
-        android:id="@+id/textViewResult"
-        style="@style/result1Style"
+        android:id="@+id/textViewResultBottom"
+        style="@style/resultBottom"
         android:layout_width="fill_parent"
-        android:layout_height="60dp"
-        android:textSize="30dp"
+        android:layout_height="70dp"
+        android:textSize="36dp"
         app:layout_constraintBottom_toTopOf="@+id/tableLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textViewResult2"
-        style="@style/result2Style"
+        android:id="@+id/textViewResultTop"
+        style="@style/resultTop"
         android:layout_width="fill_parent"
         android:layout_height="60dp"
         android:textSize="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/textViewResult"
+        app:layout_constraintBottom_toTopOf="@+id/textViewResultBottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+    //TODO SILNIA
     int Operation = 0;
     int OperationTemp = 0;
     double result = 0;
@@ -17,13 +18,32 @@ public class MainActivity extends AppCompatActivity {
     TextView resultTextBottom, resultTextTop;
     Button buttonZero, buttonOne, buttonTwo, buttonThree, buttonFour, buttonFive, buttonSix, buttonSeven, buttonEight, buttonNine, buttonDot, buttonEquals, buttonMod, buttonPlus, buttonMinus, buttonX, buttonAC, buttonC, buttonDivide, buttonLog, buttonFact, buttonSqrt, buttonSquare, buttonCube;
 
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("topResult", resultTextTop.getText().toString());
+        outState.putString("bottomResult", resultTextBottom.getText().toString());
+        outState.putInt("operation", Operation);
+        outState.putInt("operationTemp", OperationTemp);
+        outState.putDouble("topNumber", TopNumber);
+        outState.putDouble("bottomNumber", BottomNumber);
+    }
+
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        resultTextTop.setText(savedInstanceState.getString("topResult"));
+        resultTextBottom.setText(savedInstanceState.getString("bottomResult"));
+        Operation = savedInstanceState.getInt("operation");
+        OperationTemp = savedInstanceState.getInt("operationTemp");
+        TopNumber = savedInstanceState.getDouble("topNumber");
+        BottomNumber = savedInstanceState.getDouble("bottomNumber");
+    }
+
     public void getAndSetNumberInput(View v) {
         Button b = (Button) v;
         String buttonText = b.getText().toString();
         resultTextBottom.setText(resultTextBottom.getText() + buttonText);
     }
 
-    public int getBottomResultLenght() {
+    public int getBottomResultLength() {
         int length = resultTextBottom.getText().length(); //dlugosc aktualnie wpisanego tekstu w oknie wyniku
         return length;
     }
@@ -82,6 +102,19 @@ public class MainActivity extends AppCompatActivity {
                 result = Math.log10(TopNumber);
                 resultTextBottom.setText(Double.toString(result));
                 break;
+
+            case 10://fact
+                double result = 1;
+                TopNumber = Math.round(TopNumber);
+                if (TopNumber < 0) {//tylko na dodatnich
+                    TopNumber = TopNumber * (-1);
+                }
+                while (TopNumber > 0) {
+                    result = result * TopNumber;
+                    TopNumber--;
+                }
+                resultTextBottom.setText(Double.toString(result));
+                break;
         }
     }
 
@@ -114,8 +147,8 @@ public class MainActivity extends AppCompatActivity {
         buttonAC = findViewById(R.id.buttonAC);
         buttonC = findViewById(R.id.buttonC);
         buttonDivide = findViewById(R.id.buttonDivide);
-        resultTextBottom = findViewById(R.id.textViewResult);
-        resultTextTop = findViewById(R.id.textViewResult2);
+        resultTextBottom = findViewById(R.id.textViewResultBottom);
+        resultTextTop = findViewById(R.id.textViewResultTop);
         buttonLog = findViewById(R.id.buttonLog);
         buttonFact = findViewById(R.id.buttonFact);
         buttonSqrt = findViewById(R.id.buttonSqrt);
@@ -202,7 +235,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Operation = 1;
-                if (getBottomResultLenght() > 0) {
+                if (getBottomResultLength() > 0) {
                     resultTextTop.setText(resultTextBottom.getText() + "+");
                     bottomToTop();
                 }
@@ -213,7 +246,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Operation = 2;
-                if (getBottomResultLenght() > 0 && resultTextBottom.getText() != "-") {
+                if (getBottomResultLength() > 0 && resultTextBottom.getText() != "-") {
                     resultTextTop.setText(resultTextBottom.getText() + "-");
                     bottomToTop();
                 } else {
@@ -226,7 +259,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 OperationTemp = 3;
-                if (getBottomResultLenght() > 0) {
+                if (getBottomResultLength() > 0) {
                     resultTextTop.setText(resultTextBottom.getText() + "x");
                     bottomToTop();
                 }
@@ -237,7 +270,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 OperationTemp = 4;
-                if (getBottomResultLenght() > 0) {
+                if (getBottomResultLength() > 0) {
                     resultTextTop.setText(resultTextBottom.getText() + "/");
                     bottomToTop();
                 }
@@ -248,7 +281,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Operation = 5;
-                if (getBottomResultLenght() > 0) {
+                if (getBottomResultLength() > 0) {
                     resultTextTop.setText(resultTextBottom.getText() + "%");
                     bottomToTop();
                 }
@@ -258,8 +291,8 @@ public class MainActivity extends AppCompatActivity {
         buttonC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int number = getBottomResultLenght() - 1; //z ktorego miejsca stringa usunac (numeracja od 0)
-                if (getBottomResultLenght() > 0) {
+                int number = getBottomResultLength() - 1; //z ktorego miejsca stringa usunac (numeracja od 0)
+                if (getBottomResultLength() > 0) {
                     StringBuilder del = new StringBuilder(resultTextBottom.getText());
                     del.deleteCharAt(number);//usun znak na ostatnim miejscu
                     resultTextBottom.setText(del.toString());
@@ -287,7 +320,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 boolean isDot = false;
-                if (getBottomResultLenght() > 0) {
+                if (getBottomResultLength() > 0) {
                     String inputToCheck = (String) resultTextBottom.getText();
                     for (int i = 0; i < inputToCheck.length(); i++) {
                         if (inputToCheck.contains(".")) {
@@ -306,7 +339,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (OperationTemp == 0) {//jesli działanie na dodatnich
-                    if (getBottomResultLenght() > 0) {
+                    if (getBottomResultLength() > 0) {
                         resultTextTop.setText("");
                         BottomNumber = Double.parseDouble((String) resultTextBottom.getText());
                         calculate(Operation);
@@ -327,7 +360,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 OperationTemp = 9;
-                if (getBottomResultLenght() > 0) {
+                if (getBottomResultLength() > 0) {
                     resultTextTop.setText("log10(" + resultTextBottom.getText() + ")");
                     TopNumber = Double.parseDouble((String) resultTextBottom.getText());
                     calculate(OperationTemp);
@@ -338,6 +371,14 @@ public class MainActivity extends AppCompatActivity {
         buttonFact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                OperationTemp = 10;
+                if (getBottomResultLength() > 0) {
+
+                    int tempTop = (int) Math.floor(Double.parseDouble((String) resultTextBottom.getText()));
+                    resultTextTop.setText(String.valueOf(tempTop));
+                    TopNumber = tempTop;
+                    calculate(OperationTemp);
+                }
             }
         });
 
@@ -345,7 +386,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 OperationTemp = 8;
-                if (getBottomResultLenght() > 0) {
+                if (getBottomResultLength() > 0) {
                     resultTextTop.setText("sqrt(" + resultTextBottom.getText() + ")");
                     TopNumber = Double.parseDouble((String) resultTextBottom.getText());
                     calculate(OperationTemp);
@@ -363,7 +404,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 OperationTemp = 6;
-                if (getBottomResultLenght() > 0) {
+                if (getBottomResultLength() > 0) {
                     resultTextTop.setText(resultTextBottom.getText() + "^2");
                     TopNumber = Double.parseDouble((String) resultTextBottom.getText());
                     calculate(OperationTemp);
@@ -375,7 +416,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 OperationTemp = 7;
-                if (getBottomResultLenght() > 0) {
+                if (getBottomResultLength() > 0) {
                     resultTextTop.setText(resultTextBottom.getText() + "^3");
                     TopNumber = Double.parseDouble((String) resultTextBottom.getText());
                     calculate(OperationTemp);

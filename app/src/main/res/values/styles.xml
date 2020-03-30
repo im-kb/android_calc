@@ -20,14 +20,16 @@
     </style>
 
 
-    <style name="result1Style">
+    <style name="resultBottom">
         <item name="android:background">#BDBDBD</item>
         <item name="android:gravity">center|right</item>
+        <item name="android:fontFamily">monospace</item>
     </style>
 
-    <style name="result2Style">
+    <style name="resultTop">
         <item name="android:background">#00000000</item>
         <item name="android:gravity">bottom|right</item>
+        <item name="android:fontFamily">monospace</item>
     </style>
 
     <style name="buttonStyleInside">
