@@ -8,12 +8,13 @@
 
     <TableLayout
         android:id="@+id/tableLayout3"
-        android:layout_width="412dp"
+        android:layout_width="0dp"
         android:layout_height="380dp"
         android:shrinkColumns="*"
         android:stretchColumns="*"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="0dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <TableRow
             android:layout_width="match_parent"
@@ -202,7 +203,7 @@
     <TextView
         android:id="@+id/textViewResultBottom"
         style="@style/resultBottom"
-        android:layout_width="411dp"
+        android:layout_width="0dp"
         android:layout_height="170dp"
         android:layout_gravity="left"
         android:maxLength="14"
@@ -215,7 +216,7 @@
     <TextView
         android:id="@+id/textViewResultTop"
         style="@style/resultTop"
-        android:layout_width="411dp"
+        android:layout_width="0dp"
         android:layout_height="115dp"
         android:layout_gravity="left"
         android:textSize="36sp"

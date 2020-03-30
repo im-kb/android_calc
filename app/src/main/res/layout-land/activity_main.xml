@@ -8,8 +8,8 @@
 
     <TableLayout
         android:id="@+id/tableLayout"
-        android:layout_width="fill_parent"
-        android:layout_height="241dp"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
         android:shrinkColumns="*"
         android:stretchColumns="*"
         app:layout_constraintBottom_toBottomOf="parent"

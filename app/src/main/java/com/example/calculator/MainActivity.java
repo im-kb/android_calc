@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    //TODO SILNIA
     int Operation = 0;
     int OperationTemp = 0;
     double result = 0;
@@ -25,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
         outState.putInt("operation", Operation);
         outState.putInt("operationTemp", OperationTemp);
         outState.putDouble("topNumber", TopNumber);
-        outState.putDouble("bottomNumber", BottomNumber);
     }
 
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
@@ -34,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
         Operation = savedInstanceState.getInt("operation");
         OperationTemp = savedInstanceState.getInt("operationTemp");
         TopNumber = savedInstanceState.getDouble("topNumber");
-        BottomNumber = savedInstanceState.getDouble("bottomNumber");
     }
 
     public void getAndSetNumberInput(View v) {
@@ -298,7 +295,6 @@ public class MainActivity extends AppCompatActivity {
                     resultTextBottom.setText(del.toString());
                 } else {
                     OperationTemp = 0;
-                    Operation = 0;
                 }
             }
         });
@@ -311,7 +307,6 @@ public class MainActivity extends AppCompatActivity {
                 Operation = 0;
                 OperationTemp = 0;
                 TopNumber = 0;
-                result = 0;
                 BottomNumber = 0;
             }
         });
@@ -329,7 +324,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                     if (isDot == false) {
-                        resultTextBottom.setText(resultTextBottom.getText() + ".");// TODO append nie działa :(
+                        resultTextBottom.setText(resultTextBottom.getText() + ".");
                     }
                 }
             }
@@ -338,14 +333,10 @@ public class MainActivity extends AppCompatActivity {
         buttonEquals.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (OperationTemp == 0) {//jesli działanie na dodatnich
-                    if (getBottomResultLength() > 0) {
-                        resultTextTop.setText("");
-                        BottomNumber = Double.parseDouble((String) resultTextBottom.getText());
-                        calculate(Operation);
+                if (getBottomResultLength() > 0 && resultTextTop.length() > 0) {
+                    if (OperationTemp != 0) {//jesli działanie na ujemnych
+                        Operation = OperationTemp;
                     }
-                } else {//jesli działanie na ujemnych
-                    Operation = OperationTemp;
                     resultTextTop.setText("");
                     BottomNumber = Double.parseDouble((String) resultTextBottom.getText());
                     calculate(Operation);
@@ -375,7 +366,7 @@ public class MainActivity extends AppCompatActivity {
                 if (getBottomResultLength() > 0) {
 
                     int tempTop = (int) Math.floor(Double.parseDouble((String) resultTextBottom.getText()));
-                    resultTextTop.setText(String.valueOf(tempTop));
+                    resultTextTop.setText(tempTop + "!");
                     TopNumber = tempTop;
                     calculate(OperationTemp);
                 }
